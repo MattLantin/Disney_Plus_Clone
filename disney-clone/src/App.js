@@ -2,15 +2,16 @@ import './App.css';
 // adding a router to go back between pages without having to refresh
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/Login"
-import Header from './components/Header';
-
+import Header from "./components/Header";
+import Home from "./components/Home"
 function App() {
   return (
     <div className="App">
       <Router>
         <Header/>
         <Routes>
-          <Route exact path="/" element={<Login/>}/>
+          <Route exact path="/" element={ <Login/> }/>
+          <Route path="/home" element={ <Home/> }/>
         </Routes>
       </Router>
     </div>
