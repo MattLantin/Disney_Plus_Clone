@@ -74,9 +74,6 @@ Contributions are welcome! Please follow these steps to contribute:
     ```
 5. Open a pull request.
 
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
 ## Contact
 For questions or suggestions, please contact me at:
 - Email: [mlanti02@tufts.edu](mailto:mlanti02@tufs.edu)
