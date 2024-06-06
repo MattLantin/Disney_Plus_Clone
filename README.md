@@ -81,7 +81,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 For questions or suggestions, please contact me at:
 - Email: [mlanti02@tufts.edu](mailto:mlanti02@tufs.edu)
 - GitHub: [MattLantin](https://github.com/MattLantin)
-
----
-
-Feel free to customize this template according to your specific project details.
