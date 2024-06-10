@@ -1,12 +1,9 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore/lite";
+import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
-// import { getAnalytics } from "firebase/analytics"; 
 
-//TODO setup analytics
-//TODO remove the fireBase.js config to its own file 
-
+// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCcBBErSWyxpkoqxA77xIoBf2n_aPhjRV0",
   authDomain: "disneyplus-clone-3d8c3.firebaseapp.com",
@@ -21,11 +18,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
-const storage = getStorage(app); //default storage
+const storage = getStorage(app); // default storage
 
 // Initialize Google auth provider
 const provider = new GoogleAuthProvider();
 
 // Export the services for use in other parts of your application
-export { auth, provider, storage };
-export default db;
+export { auth, provider, storage, db }; // Ensure db is exported
