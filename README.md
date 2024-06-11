@@ -1,8 +1,5 @@
 # Disney+ Clone with React JS 
 
-**DEPLOYED on FIREBASE!!:** https://disneyplus-clone-3d8c3.web.app/ 
-
-FYI don't access on chrome. Website crawler doesn't like me
 
 ## Table of Contents
 - [Introduction](#introduction)
