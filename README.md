@@ -1,6 +1,8 @@
-# Disney+ Clone with React JS (Work in Progress)
+# Disney+ Clone with React JS 
 
-**Note:** This project is currently a work in progress. Contributions and feedback are welcome!
+**DEPLOYED on FIREBASE!!:** https://disneyplus-clone-3d8c3.web.app/ 
+
+FYI don't access on chrome. Website crawler doesn't like me
 
 ## Table of Contents
 - [Introduction](#introduction)
