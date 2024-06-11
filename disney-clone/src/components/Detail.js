@@ -1,34 +1,75 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { db } from "../firebase";
+import { doc, getDoc } from "firebase/firestore";
 import styled from "styled-components";
 
-
 const Detail = (props) => { 
-return (
-        <Container>
-            <Background>
-                <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/223DAE104BE1175F374C4AACAC0EB5B8B0DB9C49839AA2E10085533DDFE07A8E/scale?width=1440&aspectRatio=1.78&format=jpeg" alt=""/>
-            </Background>
 
-            <ImageTitle>
-                <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/47A6FB38D95B3A5EF5583C9EED0B698ED2992CBA4AC7222DD3269DC92DFA03A6/scale?width=1440&aspectRatio=1.78" alt=""/>
-            </ImageTitle>
-            <ContentMeta>
-                <Controls>
-                    <Player>
-                        <img src="/images/play-icon-black.png" alt=""/> <span>Play</span>
-                    </Player>
-                    <Trailer>
-                        <img src="/images/play-icon-white.png" alt=""/>
-                        <span>Trailer</span>
-                    </Trailer>
-                    <AddList>
-                        <span>
-                        </span>
-                        <span>
-                        </span>
-                    </AddList>
-                </Controls>
-            </ContentMeta>
-        </Container>
+    const { id } = useParams();
+    const[detailData, setDetailData] = useState({});
+
+    useEffect(() => {
+            const fetchData = async () => {
+                const docRef = doc(db, "movies", id);
+                try{
+                    const docSnap = await getDoc(docRef);
+                    if (docSnap.exists()) {
+                        setDetailData(docSnap.data());
+                    }
+                    else {
+                        console.log(" No such document in Firebase");
+                    }
+                } catch (error) {
+                    console.log("error getting document:", error);
+                }
+            };
+
+            if (id) {
+                fetchData();
+                console.log(detailData);
+            }
+        }, [id]);
+
+    return (
+            <Container>
+                <Background>
+                    <img src={detailData.backgroundImg} alt={detailData.title}/>
+                </Background>
+
+                <ImageTitle>
+                    <img src={detailData.titleImg} alt={detailData.title}/>
+                </ImageTitle>
+                <ContentMeta>
+                    <Controls>
+                        <Player>
+                            <img src="/images/play-icon-black.png" alt=""/> <span>Play</span>
+                        </Player>
+                        <Trailer>
+                            <img src="/images/play-icon-white.png" alt=""/>
+                            <span>Trailer</span>
+                        </Trailer>
+                        <AddList>
+                            <span>
+                            </span>
+                            <span>
+                            </span>
+                        </AddList>
+                        <GroupWatch>
+                            <div>
+                                <img src="/images/group-icon.png" alt=""/>
+                            </div>
+                        </GroupWatch>
+                    </Controls>
+
+                    <SubTitle>
+                        {detailData.subTitle}
+                    </SubTitle>
+                    <Description>
+                        {detailData.description}
+                    </Description>
+                </ContentMeta>
+            </Container>
     )
 };
 
@@ -157,4 +198,49 @@ const AddList = styled.div`
         }
     }
 `;
+
+const GroupWatch = styled.div`
+    height: 44px;
+    width: 44px;
+    border-radius:50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background: white;
+
+    div {
+        height: 40px;
+        width: 40px;
+        background: rgb(0, 0, 0);
+        border-radius: 50%;
+    }
+
+    img {
+        width: 100%;
+    }
+`;
+
+const SubTitle = styled.div`
+    color: rgb(249, 249, 249);
+    font-size: 15px;
+    min-height: 20px;
+
+    @media (max-width: 768px){
+        font-size: 12px;
+    }
+`;
+
+const Description = styled.div`
+    line-height: 1.4;
+    font-size: 28px;
+    padding: 16px 0px;
+    color: rgb(249, 249, 249);
+
+    @media(max-width: 768px){
+        font-size: 14px;
+    }
+
+`;
+
 export default Detail;
